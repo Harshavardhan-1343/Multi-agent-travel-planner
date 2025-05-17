@@ -1,0 +1,20 @@
+flight_task:
+  agent_id: flight_optimizer
+  description: >
+    Search for flights from source to destination under user's budget and constraints.
+  expected_output: >
+    A list of top 5 flight options with airline, price, timings, duration, and layovers (if any).
+
+hotel_task:
+  agent_id: stay_recommender
+  description: >
+    Search and filter hotels matching stay dates and preferences.
+  expected_output: >
+    A list of recommended hotels with name, rating, location, price per night, and amenities.
+
+itinerary_task:
+  agent_id: itinerary_curator
+  description: >
+    Generate a daily travel itinerary including local attractions and time management.
+  expected_output: >
+    A day-wise plan listing activities, estimated travel times, and suggestions for meals or breaks.
