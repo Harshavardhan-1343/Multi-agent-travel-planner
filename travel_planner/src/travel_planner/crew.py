@@ -2,6 +2,11 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
+from tools.custom_tool import RealTimeFlightTool
+
+# Inside agent definition
+
+
 
 @CrewBase
 class TravelPlanner():
@@ -15,6 +20,7 @@ class TravelPlanner():
         return Agent(
             config=self.agents_config['flight_optimizer'],  # type: ignore[index]
             verbose=True
+            tools=[RealTimeFlightTool()]
         )
 
     @agent
