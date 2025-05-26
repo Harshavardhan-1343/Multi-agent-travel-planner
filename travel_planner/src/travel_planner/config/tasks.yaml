@@ -18,3 +18,5 @@ itinerary_task:
     Generate a daily travel itinerary including local attractions and time management.
   expected_output: >
     A day-wise plan listing activities, estimated travel times, and suggestions for meals or breaks.
+
+

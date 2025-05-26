@@ -1,3 +1,4 @@
+
 flight_optimizer:
   role: >
     Flight Optimization Agent
@@ -21,3 +22,6 @@ itinerary_curator:
     Build an engaging daily plan for the trip
   backstory: >
     Experienced tour guide who knows how to maximize fun and minimize stress. Plans well-balanced travel days including sightseeing, meals, and rest — customized to the traveler's style.
+
+
+

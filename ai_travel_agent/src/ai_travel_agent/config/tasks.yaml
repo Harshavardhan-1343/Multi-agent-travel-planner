@@ -1,0 +1,127 @@
+# PHASE 1: Research and Budget Planning (Independent Tasks)
+travel_finance_advisor_task:
+  description: >
+    Review the traveler's total budget of **${total_budget}**, destination list: **${destination_list}**, and experience preferences: **${experience_preferences}**.
+    Allocate funds strategically across transportation, accommodation, experiences, and an emergency buffer.
+    Consider the trip duration of **${trip_duration}** days and number of travelers: **${num_travelers}**.
+    Provide reasoning for splurge vs. save decisions based on the traveler's profile.
+  expected_output: >
+    A markdown report including:
+    1. A budget breakdown by category (transportation: $X, lodging: $X, experiences: $X, food: $X, emergency buffer: $X)
+    2. Justification for each allocation (why save/splurge)
+    3. Recommendations for maximizing value (e.g., time to book, travel passes, off-season savings)
+    4. Daily spending target per person
+  tools: []
+  context: []
+
+travel_intelligence_analyst_task:
+  description: >
+    Analyze current pricing data for the following destinations: **${destination_list}** during **${travel_dates}**.
+    Track deals on flights, accommodations, and experiences within the allocated budget from the Finance Advisor.
+    Account for the traveler's flexibility: **${traveler_flexibility}**, and preferred platforms: **${preferred_platforms}**.
+    Use the provided tools to get real-time pricing data and market insights.
+  expected_output: >
+    A markdown table or bullet list that includes:
+    - Top 3 flight deals to each destination (with approximate prices and booking links)
+    - Top 3 accommodation deals per destination (with price ranges)
+    - Current experience/activity pricing
+    - Price trend summaries and expected fluctuations
+    - Best timeframes to book for each destination
+    - Warnings on dynamic pricing tactics or price traps
+  tools: [flight_pricing_tool, hotel_pricing_tool]
+  context: [travel_finance_advisor_task]
+
+# PHASE 2: Experience Discovery (Depends on Phase 1)
+destination_research_specialist_task:
+  description: >
+    For each destination in **${destination_list}**, identify 3–4 off-the-beaten-path experiences.
+    Match these to traveler interests: **${traveler_interests}** and style: **${travel_style}**.
+    Focus on authentic, immersive options and avoid tourist traps.
+    Consider the budget allocation from the Finance Advisor for experience costs.
+  expected_output: >
+    A markdown report with:
+    - For each destination:
+      - 3 to 4 hidden gem experiences (with location, description, and why it's unique)
+      - Tags (e.g., adventure, cultural, nature, foodie)
+      - Estimated cost and duration for each experience
+      - Best times to visit/book
+    - A final recommendation list ordered by uniqueness and value
+  tools: []
+  context: [travel_finance_advisor_task]
+
+cultural_experience_curator_task:
+  description: >
+    Find culturally rich experiences in **${destination_list}**, keeping in mind the traveler's cultural interest level: **${cultural_interest_level}**.
+    Align all experiences with ethical travel values: **${traveler_ethics_preference}**.
+    Research local festivals, cultural events, and community experiences during **${travel_dates}**.
+    Use the provided tools to discover authentic cultural events and local experiences.
+  expected_output: >
+    A structured markdown list including:
+    - Cultural event name, timing, location for each destination
+    - Cultural significance and traveler etiquette tips
+    - How to participate respectfully (dos and don'ts)
+    - Suggested donation/price if applicable
+    - Community-based tourism options
+    - Local cultural centers, museums, or workshops
+  tools: [events_tool]
+  context: [travel_finance_advisor_task]
+
+# PHASE 3: Itinerary Creation (Depends on Phase 2)
+itinerary_planning_specialist_task:
+  description: >
+    Create a comprehensive day-by-day itinerary for **${trip_duration}** days during **${travel_dates}**.
+    Integrate the experiences discovered by the Destination Research Specialist and Cultural Experience Curator.
+    Balance activity levels, travel time between locations, and rest periods.
+    Consider opening hours, seasonal availability, and local schedules.
+    Optimize the flow between **${destination_list}** destinations.
+  expected_output: >
+    A detailed markdown itinerary including:
+    - Day-by-day schedule with dates, times, and locations
+    - Activity descriptions and why they were chosen
+    - Travel time between activities
+    - Meal suggestions and free time blocks
+    - Backup indoor/outdoor options for weather
+    - Estimated daily costs
+    - Inter-destination travel dates and logistics
+  tools: []
+  context: [destination_research_specialist_task, cultural_experience_curator_task, travel_finance_advisor_task]
+
+# PHASE 4: Transportation Planning (Depends on Phase 3)
+transportation_strategist_task:
+  description: >
+    Plan efficient, multi-modal transport using the complete itinerary from the Itinerary Planning Specialist.
+    Account for traveler's passport: **${passport_country}** and research current visa requirements.
+    Consider the transportation budget allocation from the Finance Advisor.
+    Use the provided tools to check weather conditions, visa requirements, and plan optimal routes.
+    Plan connections between destinations in **${destination_list}** during **${travel_dates}**.
+  expected_output: >
+    A structured travel transportation plan (markdown format) that includes:
+    - Step-by-step transit plan for each leg (with transport mode, provider, estimated cost, and duration)
+    - International flight options and domestic transport connections
+    - Booking recommendations and cost estimates
+    - Visa/transit policy requirements and processing times (from visa tool)
+    - Weather considerations and transport adjustments for forecasted conditions
+    - Alternative routes or backup options for each major connection
+    - Transportation passes or discount options
+  tools: [weather_tool, visa_tool]
+  context: [itinerary_planning_specialist_task, travel_finance_advisor_task, travel_intelligence_analyst_task]
+
+# PHASE 5: Risk Assessment (Depends on Complete Itinerary)
+travel_crisis_management_task:
+  description: >
+    Assess risks across the complete itinerary from the Itinerary Planning Specialist and transportation plan.
+    Research current safety conditions, political stability, and weather patterns for **${destination_list}** during **${travel_dates}**.
+    Create contingency plans for the specific experiences and transport connections planned.
+    Use the provided tools to get current travel advisories, safety information, and weather alerts.
+  expected_output: >
+    A markdown crisis response guide with:
+    1. Risk assessment by destination and travel dates (political, weather, health, safety) - using tool data
+    2. Current government travel advisory levels and specific warnings
+    3. Specific contingency plans for each major itinerary component
+    4. Alternative experiences if primary ones become unavailable
+    5. Emergency contact recommendations (embassies, local authorities, travel insurance)
+    6. Travel insurance suggestions based on activities planned and risk levels
+    7. Rapid response checklist for common disruptions
+    8. Communication plan and important phone numbers
+  tools: [advisories_tool, weather_tool]
+  context: [itinerary_planning_specialist_task, transportation_strategist_task]

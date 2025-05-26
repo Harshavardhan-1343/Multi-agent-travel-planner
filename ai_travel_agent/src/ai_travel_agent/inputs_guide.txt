@@ -1,0 +1,48 @@
+# Variable Consistency Guide
+# Use these exact variable names throughout your project
+
+# CORE TRIP DETAILS
+destination_list: "List of destinations (e.g., 'Tokyo, Kyoto, Bangkok')"
+travel_dates: "Travel period (e.g., 'March 15-30, 2024')"
+trip_duration: "Number of days (e.g., 15)"
+num_travelers: "Number of people (e.g., 2)"
+
+# BUDGET
+total_budget: "Total budget amount (e.g., 5000)"
+
+# TRAVELER PREFERENCES
+experience_preferences: "What they want from the trip (e.g., 'adventure, local food, cultural immersion')"
+traveler_interests: "Specific interests (e.g., 'hiking, photography, museums')"
+travel_style: "Travel style (e.g., 'budget backpacker', 'mid-range comfort', 'luxury')"
+cultural_interest_level: "How much they want cultural experiences (e.g., 'high', 'moderate', 'casual')"
+traveler_ethics_preference: "Ethical travel preferences (e.g., 'sustainable tourism', 'support local communities')"
+
+# LOGISTICS
+passport_country: "Traveler's passport country (e.g., 'United States')"
+traveler_flexibility: "How flexible they are with dates/times (e.g., 'high', 'moderate', 'fixed')"
+preferred_platforms: "Booking platforms they prefer (e.g., 'Booking.com, Airbnb, Expedia')"
+
+# CREW AI EXECUTION ORDER
+# Phase 1 (Parallel):
+# - travel_finance_advisor_task
+# - travel_intelligence_analyst_task (uses finance output)
+
+# Phase 2 (Parallel, uses Phase 1):
+# - destination_research_specialist_task
+# - cultural_experience_curator_task
+
+# Phase 3 (Uses Phase 2):
+# - itinerary_planning_specialist_task
+
+# Phase 4 (Uses Phase 3):
+# - transportation_strategist_task
+
+# Phase 5 (Uses Phase 4):
+# - travel_crisis_management_task
+
+# NOTES FOR CREW AI IMPLEMENTATION:
+# 1. Use context passing between tasks - each task should receive relevant outputs from its dependencies
+# 2. The Itinerary Planning Specialist is the key agent that creates the "${full_itinerary_with_dates}" that other agents need
+# 3. Tasks now use web search tools instead of expecting pre-provided data like weather forecasts
+# 4. Each task has clear dependencies listed to help with execution order
+# 5. All variable names are now consistent between agents.yml and tasks.yml
